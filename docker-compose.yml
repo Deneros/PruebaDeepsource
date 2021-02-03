@@ -1,0 +1,22 @@
+version: "3"
+
+services: 
+  web:
+    container_name: web
+    image: node
+    build: .
+    ports: 
+      - 3000:3000
+    links: 
+      - mongo
+    volumes: 
+      - .:/usr/src/app
+    environment: 
+      - MONGODB_URI=mongodb://mongo/database
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports: 
+      - 27017:27017
+
+  
